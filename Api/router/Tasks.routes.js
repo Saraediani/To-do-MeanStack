@@ -5,10 +5,10 @@ import {verifyToken} from "../middleware/auth.js";
 import {addtask, getTask, getTasks, updatetask, deletetask} from "../controllers/TasksCont.js";
 
 router
-  .route("/")
+  .route("/tasks")
   .post(verifyToken,addtask)
   .get(verifyToken,getTasks)
-router.route("/:id").get(verifyToken,getTask)
+router.route("/task/:id").get(verifyToken,getTask)
   .put(verifyToken,updatetask)
   .delete(verifyToken,deletetask);
 
