@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor() { }
-  
+
    getUserDetails() {
     if(localStorage.getItem('userData')){
 
@@ -15,12 +15,15 @@ export class AuthService {
     }else{
       return null
     }
-    
+
   }
 
   setDataInLocalStorage(variableName, data) {
       localStorage.setItem(variableName, data);
   }
+
+  
+
 
   getToken() {
       return localStorage.getItem('token');
