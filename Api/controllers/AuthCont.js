@@ -50,31 +50,57 @@ const login = async(req,res) => {
         }
         // Validate if user exist in our database
         const user = await User.findOne({ email });
-    
-        if (user && (await bcrypt.compare(password, user.password))) {
-          // Create token
-          const token = jwt.sign(
-            { user_id: user._id, email },
-            process.env.JWT_KEY,
-            {
-              expiresIn: "2h",
-            }
-          );
-    
-          // save user token
-          user.token = token;
-          await user.save()
-    
-          // user
-        //   res.status(200).json(user);
-          res.send(token);
+
+        if (!user) {
+          return res.status(401).send("Invalid Email or Password");
         }
-        res.status(400).send("Invalid Credentials");
+
+        // Validate if password is correct
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return res.status(401).send("Invalid Email or Password");
+        }
+
+        // Create JWT token
+        const token = jwt.sign({ id: user._id }, process.env.JWT_KEY, {
+          expiresIn: "1h",
+        });
+
+        // return token
+        res.status(200).json({ token });
       } catch (err) {
         console.log(err);
       }
+
+    }
+
+
+
+        
+    //     if (user && (await bcrypt.compare(password, user.password))) {
+    //       // Create token
+    //       const token = jwt.sign(
+    //         { user_id: user._id, email },
+    //         process.env.JWT_KEY,
+    //         {
+    //           expiresIn: "2h",
+    //         }
+    //       );
+    
+    //       // save user token
+    //       user.token = token;
+    //       await user.save()
+    
+    //       // user
+    //     //   res.status(200).json(user);
+    //       res.send(token);
+    //     }
+    //     res.status(400).send("Invalid Credentials");
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
       
-    };
+    // };
     
 
 export {register,login}

@@ -20,7 +20,7 @@ export const addtask = async (req, res) => {
             await task.save().then(data => {
                 res.send({
                     message:"task created successfully!!",
-                    user:data
+                    data:data
                 });
             }).catch(err => {
                 res.status(500).send({
@@ -31,6 +31,7 @@ export const addtask = async (req, res) => {
     export const getTasks = async (req, res) => {
         try {
             const tasks = await Task.find();
+            console.log(tasks);
             res.status(200).json(tasks);
         } catch(error) {
             res.status(404).json({message: error.message});
