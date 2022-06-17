@@ -72,8 +72,36 @@ const login = async(req,res) => {
       } catch (err) {
         console.log(err);
       }
+
+    }
+
+
+
+        
+    //     if (user && (await bcrypt.compare(password, user.password))) {
+    //       // Create token
+    //       const token = jwt.sign(
+    //         { user_id: user._id, email },
+    //         process.env.JWT_KEY,
+    //         {
+    //           expiresIn: "2h",
+    //         }
+    //       );
+    
+    //       // save user token
+    //       user.token = token;
+    //       await user.save()
+    
+    //       // user
+    //     //   res.status(200).json(user);
+    //       res.send(token);
+    //     }
+    //     res.status(400).send("Invalid Credentials");
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
       
-    };
+    // };
     
 
 export {register,login}

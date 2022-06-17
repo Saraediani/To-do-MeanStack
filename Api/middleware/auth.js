@@ -2,20 +2,25 @@ import jwt from "jsonwebtoken";
 
 const config = process.env;
 
-const verifyToken = (req, res, next) => {
-  const token = req.headers["authorization"].split(" ")[1];
-    // console.log(token);
+export const verifyToken = (req, res, next) => {
+  
 
-  if (!token) {
-    return res.status(403).send("A token is required for authentication");
-  }
   try {
-    const decoded = jwt.verify(token, config.JWT_KEY);
-    req.user = decoded;
-  } catch (err) {
-    return res.status(401).send("Invalid Token");
-  }
-  return next();
+    let token = req.header("authorization")
+    if (token) {
+      token = token.split(" ")[1];
+      const decoded = jwt.verify(token, config.JWT_KEY);
+      req.user = decoded;
+      next();
+    }
+    next()
+  } catch (error) {
+    return res.status(401).json({
+      message: "Auth failed"
+    })
+}
+
+  
 };
 
-export  {verifyToken};
+export default{ verifyToken};

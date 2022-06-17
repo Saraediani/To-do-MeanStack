@@ -1,0 +1,41 @@
+<div class = 'row m-0 w-100'>
+  <div class = 'col-md-4 offset-4 mt-5'>
+<form  *ngIf="showAddTask" @inOutPaneAnimation (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="text">Task</label>
+    <input type="text" class="form-control" name="title" id="title" placeholder="Add Task" [(ngModel)]="title"/>
+  </div>
+  <div class="form-group">
+    <label for="text">Description</label>
+    <textarea name="description" class="form-control" id="description" placeholder="Add Description" [(ngModel)]="description"></textarea>
+  </div>
+  <div class="form-group mb-3">
+    <label for="day">Type</label>
+    <!-- <select type="text" name="day" id="day" class="form-control" placeholder="type" [(ngModel)]="type"/> -->
+    <!-- <div class="input-group "> -->
+      <!-- <div class="input-group mb-3"> -->
+        <select class="form-select" name="type"  id="day" [(ngModel)]="type">
+          <option selected>Choose...</option>
+          <option value="work">Work</option>
+          <option value="growth">Growth</option>
+          <option value="personal">Personal</option>
+        </select>
+        <!-- <label class="input-group-text" for="inputGroupSelect02">Options</label> -->
+      <!-- </div> -->
+
+    <!-- </div> -->
+
+  </div>
+  <div class="form-group">
+    <label for="day">dueDate</label>
+    <input type="date" name="day" id="dueDate" class="form-control" placeholder="Add Day & Time" [(ngModel)]="dueDate"/>
+  </div>
+  <!-- <div class="form-control form-control-check">
+    <label for="reminder">Status</label>
+    <input type="checkbox" name="reminder" id="status" [(ngModel)]="status"/>
+  </div> -->
+  <input type="submit" value="Add" class="btn btn-secondary" />
+</form>
+</div>
+</div>
+

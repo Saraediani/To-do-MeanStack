@@ -1,0 +1,13 @@
+<div  class="task" style="width: 35%; margin: 0 auto 10px; border-style: ridge; background-color: #C6DCE4;" (dblclick)="onToggle(task)">
+  <h3>
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+    {{ task.title }}
+    <i class="fa-solid fa-pen-to-square"></i>
+    <i [ngStyle]="{ color: 'red' }"
+    (click)="onDelete(task)" class="fa-solid fa-trash"></i>
+  </h3>
+  <p>{{ task.description }}</p>
+  <p>{{task.dueDate}}</p>
+  <!-- <p>{{ task.status }}</p> -->
+  <div style="background-color: #39bbeb; width: 50px; height: 25px ; border-radius: 20px;"><p style="text-align: center">{{ task.type }}</p></div>
+</div>

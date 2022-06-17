@@ -8,7 +8,7 @@ router
   .route("/tasks")
   .post(verifyToken,addtask)
   .get(verifyToken,getTasks)
-router.route("/task/:id").get(verifyToken,getTask)
+router.route("/tasks/:id").get(verifyToken,getTask)
   .put(verifyToken,updatetask)
   .delete(verifyToken,deletetask);
 
